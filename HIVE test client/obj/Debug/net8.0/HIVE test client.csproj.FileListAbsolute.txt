@@ -1,0 +1,17 @@
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\HIVE test client.exe
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\HIVE test client.deps.json
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\HIVE test client.runtimeconfig.json
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\HIVE test client.dll
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\HIVE test client.pdb
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\bin\Debug\net8.0\Google.FlatBuffers.dll
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.csproj.AssemblyReference.cache
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.AssemblyInfoInputs.cache
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.AssemblyInfo.cs
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.csproj.CoreCompileInputs.cache
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE tes.77146135.Up2Date
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.dll
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\refint\HIVE test client.dll
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.pdb
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\HIVE test client.genruntimeconfig.cache
+C:\Users\998451\Workspace\HIVE\HIVE test client\HIVE test client\obj\Debug\net8.0\ref\HIVE test client.dll
