@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HIVE test client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ded56da0a13ee5a92149a78caa5378c360805cdd")]
 [assembly: System.Reflection.AssemblyProductAttribute("HIVE test client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HIVE test client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -25,7 +25,7 @@ try
 
             // Build a bounding box (example values, adjust as needed)
             var centreT = new Vec3T { X = 0, Y = 0, Z = 0 };
-            var dimensionsT = new Vec3T { X = 1, Y = 1, Z = 1 };
+            var dimensionsT = new Vec3T { X = 0, Y = 0, Z = 0 };
             var rotationT = new Vec4T { W = 0, X = 0, Y = 0, Z = 1 };
 
             var boundingBoxOffset = BoundingBox.CreateBoundingBox(
@@ -214,6 +214,38 @@ try
 
                                             // Ellipsoid flag
                                             Console.WriteLine($"  Ellipsoid: {bb.Ellipsoid}");
+
+                                            // Draw a square with robot
+                                            var position = dimensions.Value;
+                                            float x = position.X;
+                                            float y = position.Y;
+
+                                            for (int a = 0; a < 100; a++)
+                                            {
+                                                x = x + 0.1f;
+                                                dimensionsT.X = x;
+                                                SendRobotUpdate(client, x, y);
+
+                                            }
+                                            for (int b = 0; b < 100; b++)
+                                            {
+                                                y = y + 0.1f;
+                                                dimensionsT.Y = y;
+                                                SendRobotUpdate(client, x, y);
+                                            }
+                                            for (int a = 0; a < 100; a++)
+                                            {
+                                                x = x - 0.1f;
+                                                dimensionsT.X = x;
+                                                SendRobotUpdate(client, x, y);
+                                            }
+                                            for (int b = 0; b < 100; b++)
+                                            {
+                                                y = y - 0.1f;
+                                                dimensionsT.Y = y;
+                                                SendRobotUpdate(client, x, y);
+                                            }
+
                                         }
                                         else
                                         {
@@ -325,11 +357,6 @@ try
                 // Try increasing the wait time or check if your robot data format is correct
             }
 
-            void GetCoordinates()
-            {
-
-            }
-
             void SendPulse(TcpClient client)
             {
                 try
@@ -353,11 +380,78 @@ try
                 }
             }
 
+            void SendRobotUpdate(TcpClient client, float x, float y)
+            {
+                try
+                {
+                    if (client.Connected)
+                    {
+                        NetworkStream stream = client.GetStream();
+                        if (stream.CanWrite)
+                        {
+                            // Build and send the robot update request
+                            var newRobotRequestBuilder = new FlatBufferBuilder(256);
+
+                            // Add required string fields
+                            var newNameOffset = robotRequestBuilder.CreateString("testRobot");
+
+                            // Build a bounding box (example values, adjust as needed)
+                            var newCentreT = new Vec3T { X = 0, Y = 0, Z = 0 };
+                            var newDimensionsT = new Vec3T { X = x, Y = y, Z = 0 };
+                            var newRotationT = new Vec4T { W = 0, X = 0, Y = 0, Z = 1 };
+
+                            var newBoundingBoxOffset = BoundingBox.CreateBoundingBox(
+                                newRobotRequestBuilder,
+                                newCentreT,
+                                newDimensionsT,
+                                newRotationT,
+                                false
+                            );
+
+                            // Build the robot
+                            Robot.StartRobot(newRobotRequestBuilder);
+                            Robot.AddId(newRobotRequestBuilder, 123UL);
+                            Robot.AddName(newRobotRequestBuilder, nameOffset);
+                            Robot.AddSubscription(newRobotRequestBuilder, (ushort)20);
+                            Robot.AddRate(newRobotRequestBuilder, SubscriptionRate.Full);
+                            Robot.AddBoundingBox(newRobotRequestBuilder, boundingBoxOffset);
+
+                            byte[] newRobotUpdateBytes = newRobotRequestBuilder.SizedByteArray();
+
+                            // Create outer flatbuffer for the update
+                            var builder = new FlatBufferBuilder(1024);
+                            var dataVector = Payload.CreateDataVector(builder, newRobotUpdateBytes);
+                            Payload.StartPayload(builder);
+                            Payload.AddData(builder, dataVector);
+                            var payloadOffset = Payload.EndPayload(builder);
+                            var payloadsVector = State.CreatePayloadVector(builder, new[] { payloadOffset });
+                            State.StartState(builder);
+                            State.AddPayload(builder, payloadsVector);
+                            var stateOffset = State.EndState(builder);
+                            builder.Finish(stateOffset.Value);
+                            byte[] stateBytes = builder.SizedByteArray();
+
+                            // Send length prefix
+                            byte[] stateLenPrefix = BitConverter.GetBytes(stateBytes.Length);
+                            stream.Write(stateLenPrefix, 0, stateLenPrefix.Length);
+
+                            // Send the actual state message
+                            stream.Write(stateBytes, 0, stateBytes.Length);
+                            Console.WriteLine("");
+                            Console.WriteLine("Robot update sent");
+                            Console.WriteLine($"Dimensions: X={newDimensionsT.X:F3}, Y={newDimensionsT.Y:F3}, Z={newDimensionsT.Z:F3}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Robot update send error: {ex.Message}");
+                }
+
+            }
         }
 
     }
-
-
 
 }
 catch (SocketException ex)
