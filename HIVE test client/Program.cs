@@ -229,28 +229,7 @@ try
 
                                         CreateNode(robot.Id, x, x, 0.0f);
 
-                                        // Draw a square with robot
-
-                                        for (int a = 0; a < 100; a++)
-                                        {
-                                            x = x + 0.1f;
-                                            CreateNode(robot.Id, x, y, 0.0f);
-                                        }
-                                        for (int b = 0; b < 100; b++)
-                                        {
-                                            y = y + 0.1f;
-                                            CreateNode(robot.Id, x, y, 0.0f);
-                                        }
-                                        for (int a = 0; a < 100; a++)
-                                        {
-                                            x = x - 0.1f;
-                                            CreateNode(robot.Id, x, y, 0.0f);
-                                        }
-                                        for (int b = 0; b < 100; b++)
-                                        {
-                                            y = y - 0.1f;
-                                            CreateNode(robot.Id, x, y, 0.0f);
-                                        }
+                                        UpdateNodes(robot, x, y);
                                     }
                                     else
                                     {
@@ -355,6 +334,32 @@ try
                 Console.WriteLine("");
                 Console.WriteLine("No data available from server yet - it might still be processing");
                 // Try increasing the wait time or check if your robot data format is correct
+            }
+
+            void UpdateNodes(Robot robot, float x, float y)
+            {
+                // Draw a square with robot
+
+                for (int a = 0; a < 100; a++)
+                {
+                    x = x + 0.1f;
+                    CreateNode(robot.Id, x, y, 0.0f);
+                }
+                for (int b = 0; b < 100; b++)
+                {
+                    y = y + 0.1f;
+                    CreateNode(robot.Id, x, y, 0.0f);
+                }
+                for (int a = 0; a < 100; a++)
+                {
+                    x = x - 0.1f;
+                    CreateNode(robot.Id, x, y, 0.0f);
+                }
+                for (int b = 0; b < 100; b++)
+                {
+                    y = y - 0.1f;
+                    CreateNode(robot.Id, x, y, 0.0f);
+                }
             }
 
             void SendPulse(TcpClient client)

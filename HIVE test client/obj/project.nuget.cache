@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7xilQ5jlCCg=",
+  "dgSpecHash": "GGU3UEv0HlI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\998451\\Workspace\\HIVE\\HIVE test client\\HIVE test client\\HIVE test client.csproj",
+  "projectFilePath": "C:\\Users\\998451\\Workspace\\HIVE\\Test Client HIVE\\Hive-test-client\\HIVE test client\\HIVE test client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\998451\\.nuget\\packages\\google.flatbuffers\\25.2.10\\google.flatbuffers.25.2.10.nupkg.sha512"
   ],

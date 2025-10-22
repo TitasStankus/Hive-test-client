@@ -44,11 +44,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\998451\\Workspace\\HIVE\\HIVE test client\\HIVE test client\\HIVE test client.csproj",
+      "projectUniqueName": "C:\\Users\\998451\\Workspace\\HIVE\\Test Client HIVE\\Hive-test-client\\HIVE test client\\HIVE test client.csproj",
       "projectName": "HIVE test client",
-      "projectPath": "C:\\Users\\998451\\Workspace\\HIVE\\HIVE test client\\HIVE test client\\HIVE test client.csproj",
+      "projectPath": "C:\\Users\\998451\\Workspace\\HIVE\\Test Client HIVE\\Hive-test-client\\HIVE test client\\HIVE test client.csproj",
       "packagesPath": "C:\\Users\\998451\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\998451\\Workspace\\HIVE\\HIVE test client\\HIVE test client\\obj\\",
+      "outputPath": "C:\\Users\\998451\\Workspace\\HIVE\\Test Client HIVE\\Hive-test-client\\HIVE test client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
