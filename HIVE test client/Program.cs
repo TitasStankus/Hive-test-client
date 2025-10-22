@@ -85,8 +85,6 @@ try
             Console.WriteLine("Waiting for server response...");
             Thread.Sleep(2000); // Wait 2 seconds for processing
 
-
-
             // Check if data is available first
             if (stream.DataAvailable)
             {
@@ -124,6 +122,28 @@ try
                 Console.WriteLine($"Hex: {BitConverter.ToString(responseData, 0, Math.Min(totalBytesRead, 100))}..."); // First 100 bytes
                 Console.WriteLine($"As ASCII: {System.Text.Encoding.ASCII.GetString(responseData, 0, Math.Min(totalBytesRead, 100))}...");
 
+                ReadServerResponse(responseData, totalBytesRead);
+
+                System.Timers.Timer pulseTimer = new System.Timers.Timer(1000);
+                pulseTimer.Elapsed += (sender, e) => SendPulse(client);
+                pulseTimer.Start();
+
+                Console.WriteLine("");
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadKey();
+
+                pulseTimer.Stop();
+                pulseTimer.Dispose();
+            }
+            else
+            {
+                Console.WriteLine("");
+                Console.WriteLine("No data available from server yet - it might still be processing");
+                // Try increasing the wait time or check if your robot data format is correct
+            }
+
+            void ReadServerResponse(byte[] responseData, int totalBytesRead)
+            {
                 try
                 {
                     // Try to parse as State first (your expected format)
@@ -316,24 +336,6 @@ try
                     string fullText = System.Text.Encoding.UTF8.GetString(responseData, 0, totalBytesRead);
                     Console.WriteLine($"Full response as text: {fullText}");
                 }
-
-
-                System.Timers.Timer pulseTimer = new System.Timers.Timer(1000);
-                pulseTimer.Elapsed += (sender, e) => SendPulse(client);
-                pulseTimer.Start();
-
-                Console.WriteLine("");
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
-
-                pulseTimer.Stop();
-                pulseTimer.Dispose();
-            }
-            else
-            {
-                Console.WriteLine("");
-                Console.WriteLine("No data available from server yet - it might still be processing");
-                // Try increasing the wait time or check if your robot data format is correct
             }
 
             void UpdateNodes(Robot robot, float x, float y)
