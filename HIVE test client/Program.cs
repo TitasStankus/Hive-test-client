@@ -190,8 +190,16 @@ try
                     var byteBuffer = new ByteBuffer(responseData);
                     var state = State.GetRootAsState(byteBuffer);
 
+                    if (state.PayloadLength == 0)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("No payloads have been parsed");
+                        return;
+                    }
+
                     Console.WriteLine("");
                     Console.WriteLine($"Successfully parsed as State with {state.PayloadLength} payload(s)");
+
                     // Go through each payload
                     for (int i = 0; i < state.PayloadLength; i++)
                     {
@@ -520,6 +528,7 @@ try
                     Console.WriteLine($"Pulse send error: {ex.Message}");
                 }
             }
+
         }
 
     }
